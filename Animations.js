@@ -57,6 +57,11 @@ FlatFloatFromBottom.animationInterpolators.out = buildStyleInterpolator(FlatFade
 FlatFloatFromRight.animationInterpolators.out = buildStyleInterpolator(FlatFadeToTheLeft);
 
 var None = {
+    opacity: {
+        value: 1.0,
+        type: 'constant',
+    },
+
     gestures: {
     },
 
