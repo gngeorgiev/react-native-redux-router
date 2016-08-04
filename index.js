@@ -45,7 +45,6 @@ class Router extends React.Component {
         super(props);
         this.routes = {};
         this.schemas = {};
-        this.currentRoute = null;
         var {dispatch} = props;
         if (!dispatch){
             throw new Error("No redux dispatch is provided to Router!");
@@ -99,6 +98,11 @@ class Router extends React.Component {
         this.routerActions = RouterActions;
         this.initialRoute =  this.routes[this.initial] || console.error("No initial route "+this.initial);
         this.state = {initial: this.initial};
+    }
+
+    get currentRoute() {
+        const routes = this.refs.nav.getCurrentRoutes();
+        return routes[routes.length - 1];
     }
 
     componentWillReceiveProps(props){
