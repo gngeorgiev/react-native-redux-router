@@ -106,7 +106,7 @@ class Router extends React.Component {
     }
 
     componentWillReceiveProps(props){
-        if (props.mode && props.currentRoute !== this.currentRoute){
+        if (props.mode && props.currentRoute !== this.currentRoute.name) {
             this.onChange(props)
         }
     }
