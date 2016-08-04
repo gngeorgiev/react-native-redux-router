@@ -45,6 +45,7 @@ class Router extends React.Component {
         super(props);
         this.routes = {};
         this.schemas = {};
+        this.currentRoute = null;
         var {dispatch} = props;
         if (!dispatch){
             throw new Error("No redux dispatch is provided to Router!");
@@ -101,7 +102,7 @@ class Router extends React.Component {
     }
 
     componentWillReceiveProps(props){
-        if (props.mode){
+        if (props.mode && props.currentRoute !== this.currentRoute){
             this.onChange(props)
         }
     }
@@ -113,6 +114,9 @@ class Router extends React.Component {
                 console.error("No route is defined for name: "+page.currentRoute);
                 return;
             }
+
+            this.currentRoute = page.currentRoute;
+
             // check if route is popup
             if (route.schema=='popup'){
                 var element = React.createElement(route.component, Object.assign({}, route, page.data, {dispatch: this.props.dispatch, routes:this.routerActions}));
